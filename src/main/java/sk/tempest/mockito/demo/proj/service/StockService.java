@@ -1,7 +1,7 @@
 package sk.tempest.mockito.demo.proj.service;
 
-import sk.tempest.mockito.demo.proj.entity.Stock;
+import sk.tempest.mockito.demo.proj.entity.Portfolio;
 
 public interface StockService {
-   public double getPrice(Stock stock);
+   public int getQuantityAllPortfolio(Portfolio portfolio);
 }

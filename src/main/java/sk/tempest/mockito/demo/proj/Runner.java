@@ -5,31 +5,40 @@ import java.util.List;
 import sk.tempest.mockito.demo.proj.entity.Portfolio;
 import sk.tempest.mockito.demo.proj.service.StockService;
 import static org.mockito.Mockito.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import sk.tempest.mockito.demo.proj.entity.Stock;
 
 public class Runner {
-    
-   Portfolio portfolio;	
-   StockService stockService;
-	   
+       
+    //@Autowired
+    StockService stockService;	   
    
    public static void main(String[] args){
+   }
+   
+   /*
       Runner runner = new Runner();
-      runner.setUp();
-      System.out.println(runner.testMarketValue()?"pass":"fail");
+      //runner.setUp();
+      List<Stock> stocks = new ArrayList<Stock>();	        
+      stocks.add(new Stock("1","Google", 14));
+      stocks.add(new Stock("2","Microsoft",180));
+      for(Stock stock : stocks){
+          System.out.println(stock.getStockId() + " - " + stock.getQuantity());
+      }
+      Portfolio portfolio = new Portfolio(stocks);
+      for(Stock stock : portfolio.getStocks()){
+          System.out.println(stock.getStockId() + " - " + stock.getQuantity());
+      }
+      
+      runner.result(portfolio);
    }
    
-   public void setUp(){
-      //Create a portfolio object which is to be tested		
-      portfolio = new Portfolio();		
-  
-      //Create the mock object of stock service
-      stockService = mock(StockService.class);		
-  
-      //set the stockService to the portfolio
-      portfolio.setStockService(stockService);
+   public void result(Portfolio portfolio){
+      int res = stockService.getQuantityAllPortfolio(portfolio);
+      System.out.println("quantity " + res); 
    }
    
+   /*
    public boolean testMarketValue(){
     	   
       //Creates a list of stocks to be added to the portfolio
@@ -50,4 +59,5 @@ public class Runner {
       double marketValue = portfolio.getMarketValue();		
       return marketValue == 100500.0;
    }
+    */
 }
